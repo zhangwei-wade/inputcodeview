@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="PwdEditText">
+    <declare-styleable name="CodeEditText">
         <attr name="tvWidth" format="dimension" />
         <!--文字大小-->
         <attr name="tvTextSize" format="dimension" />
@@ -18,6 +18,12 @@
         <attr name="tvBorderColor" format="reference|color" />
         <!--边框焦点颜色-->
         <attr name="tvFocusBorderColor" format="reference|color" />
+        <!--自定义选中图片-->
+        <attr name="tvCustomSelectIcon" format="reference" />
+        <!--自定义未选中图片-->
+        <attr name="tvUnCustomSelectIcon" format="reference" />
+        <!--设置边框粗细-->
+        <attr name="tvStrokeWidth" format="dimension" />
 
         <!--边框样式-->
         <attr name="tvStyle">
@@ -32,9 +38,5 @@
             <!--模拟最新微信支付边框-->
             <enum name="customStyle" value="-1" />
         </attr>
-        <!--自定义选中图片-->
-        <attr name="tvCustomSelectIcon" format="reference" />
-        <!--自定义未选中图片-->
-        <attr name="tvUnCustomSelectIcon" format="reference" />
     </declare-styleable>
 </resources>

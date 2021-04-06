@@ -31,10 +31,7 @@ import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
-
-import java.lang.reflect.Field;
 
 /**
  * 自定义文本输入框，增加清空按钮
@@ -44,6 +41,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
     private Paint paint;//绘制方框
     private Paint textPaint;//绘制字体
     private float bgCenterY;
+    private OnCodeCompleteListener onCodeCompleteListener;
     /**
      * 输入框的宽高
      */
@@ -97,6 +95,10 @@ public class InputCodeEditText extends EditText implements TextWatcher {
      * 自定义密码图片未选中选中
      */
     private int mUnSelect = R.mipmap.input_unselect;
+    /**
+     * 设置paint宽度
+     * */
+    private int mStrokeWidth;
 
 
     public InputCodeEditText(Context context, AttributeSet attrs) {
@@ -111,25 +113,26 @@ public class InputCodeEditText extends EditText implements TextWatcher {
 
 
     private void init(AttributeSet attrs) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.PwdEditText);
-        intervalSize = typedArray.getDimensionPixelSize(R.styleable.PwdEditText_tvIntervalSize, intervalSize);
-        radius = typedArray.getDimensionPixelSize(R.styleable.PwdEditText_radius, radius);
-        textSize = typedArray.getDimensionPixelSize(R.styleable.PwdEditText_tvTextSize, textSize);
-        tvWidthSize = typedArray.getDimensionPixelSize(R.styleable.PwdEditText_tvWidth, tvWidthSize);
-        mTextLen = typedArray.getInt(R.styleable.PwdEditText_tvLen, mTextLen);
-        isPassWord = typedArray.getBoolean(R.styleable.PwdEditText_tvIsPwd, isPassWord);
-        mTextColor = typedArray.getColor(R.styleable.PwdEditText_tvTextColor, mTextColor);
-        mBorderColor = typedArray.getColor(R.styleable.PwdEditText_tvBorderColor, mBorderColor);
-        mFocusBorderColor = typedArray.getColor(R.styleable.PwdEditText_tvFocusBorderColor, mFocusBorderColor);
-        mStyle = typedArray.getInt(R.styleable.PwdEditText_tvStyle, mStyle);
-        mSelect = typedArray.getResourceId(R.styleable.PwdEditText_tvCustomSelectIcon, mSelect);
-        mUnSelect = typedArray.getResourceId(R.styleable.PwdEditText_tvUnCustomSelectIcon, mUnSelect);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CodeEditText);
+        intervalSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvIntervalSize, intervalSize);
+        radius = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_radius, radius);
+        textSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvTextSize, textSize);
+        tvWidthSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvWidth, tvWidthSize);
+        mTextLen = typedArray.getInt(R.styleable.CodeEditText_tvLen, mTextLen);
+        isPassWord = typedArray.getBoolean(R.styleable.CodeEditText_tvIsPwd, isPassWord);
+        mTextColor = typedArray.getColor(R.styleable.CodeEditText_tvTextColor, mTextColor);
+        mBorderColor = typedArray.getColor(R.styleable.CodeEditText_tvBorderColor, mBorderColor);
+        mFocusBorderColor = typedArray.getColor(R.styleable.CodeEditText_tvFocusBorderColor, mFocusBorderColor);
+        mStyle = typedArray.getInt(R.styleable.CodeEditText_tvStyle, mStyle);
+        mSelect = typedArray.getResourceId(R.styleable.CodeEditText_tvCustomSelectIcon, mSelect);
+        mUnSelect = typedArray.getResourceId(R.styleable.CodeEditText_tvUnCustomSelectIcon, mUnSelect);
+        mStrokeWidth = typedArray.getDimensionPixelOffset(R.styleable.CodeEditText_tvStrokeWidth, dip2px(1));
         typedArray.recycle();
         setBackgroundColor(Color.WHITE);
         // 增加文本监听器.
         paint = new Paint();
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(1);
+        paint.setStrokeWidth(mStrokeWidth);
         paint.setColor(mBorderColor);
 
         // 增加文本监听器.
@@ -308,7 +311,9 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         }
     }
 
-    /*%每次删除一个*/
+    /**
+     * 每次删除一个
+     */
     public void removeText() {
         if (getText().length() > 0) {
             setText(getText().toString().substring(0, getText().length() - 1));
@@ -340,21 +345,9 @@ public class InputCodeEditText extends EditText implements TextWatcher {
                 return;
             }
 
-            editText.setOnLongClickListener(new OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    return true;
-                }
-            });
+            editText.setOnLongClickListener(v -> true);
             editText.setLongClickable(false);
-//            editText.setOnTouchListener((v, event) -> {
-//                if (event.getAction() == MotionEvent.ACTION_DOWN) {
-//                    // setInsertionDisabled when user touches the view
-//                    setInsertionDisabled(editText);
-//                }
-//                performClick();
-//                return false;
-//            });
+
             editText.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
                 @Override
                 public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -381,26 +374,8 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         }
     }
 
-    private void setInsertionDisabled(EditText editText) {
-        try {
-            Field editorField = EditText.class.getDeclaredField("mEditor");
-            editorField.setAccessible(true);
-            Object editorObject = editorField.get(editText);
 
-            // if this view supports insertion handles
-            Class editorClass = Class.forName("android.widget.Editor");
-            Field mInsertionControllerEnabledField = editorClass.getDeclaredField("mInsertionControllerEnabled");
-            mInsertionControllerEnabledField.setAccessible(true);
-            mInsertionControllerEnabledField.set(editorObject, false);
 
-            // if this view supports selection handles
-            Field mSelectionControllerEnabledField = editorClass.getDeclaredField("mSelectionControllerEnabled");
-            mSelectionControllerEnabledField.setAccessible(true);
-            mSelectionControllerEnabledField.set(editorObject, false);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -410,12 +385,33 @@ public class InputCodeEditText extends EditText implements TextWatcher {
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
         invalidate();
-
     }
 
     @Override
     public void afterTextChanged(Editable s) {
-
+        if (onCodeCompleteListener != null) {
+            if (getText().length() == mTextLen) {
+                onCodeCompleteListener.inputCodeComplete(getText().toString());
+            } else {
+                onCodeCompleteListener.inputCodeInput(getText().toString());
+            }
+        }
     }
 
+
+    /**
+     * 输入完成回调接口
+     */
+    public interface OnCodeCompleteListener {
+        //完成输入
+        void inputCodeComplete(String verificationCode);
+
+        //未完成输入
+        void inputCodeInput(String verificationCode);
+    }
+
+
+    public void setOnCodeCompleteListener(OnCodeCompleteListener onCodeCompleteListener) {
+        this.onCodeCompleteListener = onCodeCompleteListener;
+    }
 }

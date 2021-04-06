@@ -24,7 +24,7 @@ import static android.view.Gravity.CENTER_HORIZONTAL;
 /**
  * @author zhangwei on 2021/4/6.
  */
-public class PwdDialog extends Dialog {
+public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeCompleteListener {
 
     private String[] pwdKeyNum = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "back"};
     /**
@@ -49,6 +49,7 @@ public class PwdDialog extends Dialog {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.password_dialog);
         mCodeText = findViewById(R.id.code_pwd_view);
+        mCodeText.setOnCodeCompleteListener(this);
         mCodeText.setEnabled(false);
         findViewById(R.id.cancel_iv).setOnClickListener(v -> dismiss());
         setCancelable(false);
@@ -80,7 +81,7 @@ public class PwdDialog extends Dialog {
         return this;
     }
 
-    /*现在在底层*/
+    /**设置在底部打开*/
     private void setBottom() {
         //1、使用Dialog、设置style
         //2、设置布局
@@ -156,5 +157,14 @@ public class PwdDialog extends Dialog {
     private int dip2px(float dpValue) {
         float scale = getContext().getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);
+    }
+
+    @Override
+    public void inputCodeComplete(String verificationCode) {
+        dismiss();
+    }
+
+    @Override
+    public void inputCodeInput(String verificationCode) {
     }
 }
