@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="PwdEditText">
+        <attr name="tvWidth" format="dimension" />
+        <!--文字大小-->
+        <attr name="tvTextSize" format="dimension" />
+        <!--输入个数 默认6个-->
+        <attr name="tvLen" format="integer" />
+        <!--是否为密码输入框-->
+        <attr name="tvIsPwd" format="boolean" />
+        <!--间隔-->
+        <attr name="tvIntervalSize" format="dimension" />
+        <!--圆角-->
+        <attr name="radius" format="dimension" />
+        <!--文字颜色-->
+        <attr name="tvTextColor" format="reference|color" />
+        <!--边框颜色-->
+        <attr name="tvBorderColor" format="reference|color" />
+        <!--边框焦点颜色-->
+        <attr name="tvFocusBorderColor" format="reference|color" />
+
+        <!--边框样式-->
+        <attr name="tvStyle">
+            <!--默认无间隔正方形边框(间隔可自己设置通过tvIntervalSize)-->
+            <enum name="defaultStyle" value="0" />
+            <!--前后圆角边框 此样式不支持焦点颜色设置-->
+            <enum name="startEndRadiusStyle" value="1" />
+            <!--模拟最新微信支付边框-->
+            <enum name="weChatPayStyle" value="2" />
+            <!--模拟最新微信支付边框-->
+            <enum name="lineStyle" value="3" />
+            <!--模拟最新微信支付边框-->
+            <enum name="customStyle" value="-1" />
+        </attr>
+        <!--自定义选中图片-->
+        <attr name="tvCustomSelectIcon" format="reference" />
+        <!--自定义未选中图片-->
+        <attr name="tvUnCustomSelectIcon" format="reference" />
+    </declare-styleable>
+</resources>

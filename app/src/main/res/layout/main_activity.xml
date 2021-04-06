@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="1234"
+        app:tvBorderColor="#D6DAD6"
+        app:tvFocusBorderColor="#FFC107"
+        app:tvIntervalSize="5dp"
+        app:tvIsPwd="true"
+        app:tvLen="5"
+        app:tvTextColor="#000000"
+        app:tvTextSize="16dp"
+        app:tvWidth="45dp" />
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="123"
+        app:tvFocusBorderColor="#FFC107"
+        app:radius="10dp"
+        app:tvBorderColor="#D6DAD6"
+        app:tvIntervalSize="6dp"
+        app:tvIsPwd="false"
+        app:tvLen="5"
+        app:tvStyle="defaultStyle"
+        app:tvTextColor="#000000"
+        app:tvTextSize="16dp"
+        app:tvWidth="45dp" />
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="123"
+        app:radius="10dp"
+        app:tvBorderColor="#D6DAD6"
+        app:tvIntervalSize="0dp"
+        app:tvIsPwd="true"
+        app:tvLen="5"
+        app:tvStyle="startEndRadiusStyle"
+        app:tvTextColor="#000000"
+        app:tvTextSize="16dp"
+        app:tvWidth="45dp" />
+
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="133"
+        app:radius="10dp"
+        app:tvBorderColor="#D6DAD6"
+        app:tvIntervalSize="6dp"
+        app:tvIsPwd="false"
+        app:tvLen="5"
+        app:tvStyle="weChatPayStyle"
+        app:tvTextColor="#000000"
+        app:tvTextSize="16dp"
+        app:tvWidth="35dp" />
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="13"
+        app:tvBorderColor="#D6DAD6"
+        app:tvFocusBorderColor="#FFC107"
+        app:tvIntervalSize="6dp"
+        app:tvIsPwd="false"
+        app:tvLen="5"
+        app:tvStyle="lineStyle"
+        app:tvTextColor="#000000"
+        app:tvTextSize="16dp"
+        app:tvWidth="35dp" />
+
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="13"
+        app:tvIntervalSize="10dp"
+        app:tvLen="5"
+        app:tvStyle="customStyle"
+        app:tvWidth="35dp" />
+
+    <com.dzw.inputcode.InputCodeEditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/white"
+        android:inputType="number"
+        android:text="13"
+        app:tvCustomSelectIcon="@mipmap/adopt_icon_success"
+        app:tvIntervalSize="10dp"
+        app:tvLen="5"
+        app:tvStyle="customStyle"
+        app:tvUnCustomSelectIcon="@mipmap/adopt_icon_default"
+        app:tvWidth="35dp" />
+
+    <Button
+        android:id="@+id/click"
+        android:layout_width="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:onClick="onClickShowDialog"
+        android:text="密码输入" />
+</LinearLayout>
