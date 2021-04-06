@@ -1,10 +1,10 @@
 ## 演示
 ![](screenshot/image3.jpg)    ![](screenshot/image2.jpg)
 
-##使用介绍
+## 使用介绍
 
 
-####布局xml
+#### 布局xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -135,7 +135,7 @@
     </LinearLayout>
 ```
 
-####属性xml
+#### 属性xml
 ```xml
  <declare-styleable name="CodeEditText">
         <attr name="tvWidth" format="dimension" />
