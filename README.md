@@ -170,9 +170,9 @@
             <enum name="startEndRadiusStyle" value="1" />
             <!--模拟最新微信支付边框-->
             <enum name="weChatPayStyle" value="2" />
-            <!--模拟最新微信支付边框-->
+            <!--设置底部横线边框-->
             <enum name="lineStyle" value="3" />
-            <!--模拟最新微信支付边框-->
+            <!--自定义图片样式，如果需要设置tvCustomSelectIcon和tvUnCustomSelectIcon 必须选择该属性-->
             <enum name="customStyle" value="-1" />
         </attr>
     </declare-styleable>
