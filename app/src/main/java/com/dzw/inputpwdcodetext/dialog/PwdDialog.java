@@ -76,6 +76,12 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
         }
     }
 
+
+    /**
+     * 设置数字键盘是否随机
+     * @param isNumRand true 随机生成 false 正常显示
+     * @return
+     */
     public PwdDialog setNumRand(boolean isNumRand) {
         this.isNumRand = isNumRand;
         return this;

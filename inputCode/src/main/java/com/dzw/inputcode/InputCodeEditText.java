@@ -285,7 +285,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
                 text = "●";
             }
             float textWidth = textPaint.measureText(text);
-            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - textWidth / 2, bgCenterY + textWidth / 2, textPaint);
+            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - textWidth / 2, bgCenterY + textSize / 2, textPaint);
         }
     }
 

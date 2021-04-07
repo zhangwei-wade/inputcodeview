@@ -17,9 +17,10 @@
         app:tvStrokeWidth="2dp"
         app:tvIntervalSize="5dp"
         app:tvIsPwd="true"
+        android:text="12342"
         app:tvLen="6"
         app:tvTextColor="#000000"
-        app:tvTextSize="16dp"
+        app:tvTextSize="16sp"
         app:tvWidth="45dp" />
 
     <com.dzw.inputcode.InputCodeEditText
@@ -37,7 +38,7 @@
         app:tvLen="5"
         app:tvStyle="defaultStyle"
         app:tvTextColor="#000000"
-        app:tvTextSize="16dp"
+        app:tvTextSize="16sp"
         app:tvWidth="45dp" />
 
     <com.dzw.inputcode.InputCodeEditText
@@ -54,7 +55,7 @@
         app:tvLen="5"
         app:tvStyle="startEndRadiusStyle"
         app:tvTextColor="#000000"
-        app:tvTextSize="16dp"
+        app:tvTextSize="20sp"
         app:tvWidth="45dp" />
 
 
@@ -72,7 +73,7 @@
         app:tvLen="5"
         app:tvStyle="weChatPayStyle"
         app:tvTextColor="#000000"
-        app:tvTextSize="16dp"
+        app:tvTextSize="32sp"
         app:tvWidth="35dp" />
 
     <com.dzw.inputcode.InputCodeEditText
@@ -89,7 +90,7 @@
         app:tvLen="5"
         app:tvStyle="lineStyle"
         app:tvTextColor="#000000"
-        app:tvTextSize="16dp"
+        app:tvTextSize="20sp"
         app:tvWidth="35dp" />
 
 
