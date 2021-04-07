@@ -1,7 +1,7 @@
 
 
 ## 演示
-![](screenshot/image3.jpg)  ![](screenshot/image2.jpg)  ![](screenshot/image1.jpg)
+![](screenshot/image3.jpg)        ![](screenshot/image2.jpg)          ![](screenshot/image1.jpg)
 
 ## 使用介绍
 
