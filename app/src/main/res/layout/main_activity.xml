@@ -37,7 +37,7 @@
         app:tvIsPwd="false"
         app:tvLen="5"
         app:tvStyle="defaultStyle"
-        app:tvTextColor="#000000"
+        app:tvTextColor="#7E0808"
         app:tvTextSize="16sp"
         app:tvWidth="45dp" />
 

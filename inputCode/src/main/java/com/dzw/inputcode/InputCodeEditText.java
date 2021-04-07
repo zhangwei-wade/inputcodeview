@@ -97,7 +97,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
     private int mUnSelect = R.mipmap.input_unselect;
     /**
      * 设置paint宽度
-     * */
+     */
     private int mStrokeWidth;
 
 
@@ -285,7 +285,9 @@ public class InputCodeEditText extends EditText implements TextWatcher {
                 text = "●";
             }
             float textWidth = textPaint.measureText(text);
-            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - textWidth / 2, bgCenterY + textSize / 2, textPaint);
+            Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
+            float y = bgCenterY + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
+            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - textWidth / 2, y, textPaint);
         }
     }
 
@@ -373,8 +375,6 @@ public class InputCodeEditText extends EditText implements TextWatcher {
             e.printStackTrace();
         }
     }
-
-
 
 
     @Override
