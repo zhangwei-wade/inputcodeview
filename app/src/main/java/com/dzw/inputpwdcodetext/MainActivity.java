@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity implements InputCodeEditText
 
 
     public void onClickShowDialog(View view) {
-        new PwdDialog(this).setNumRand(false).show();
+        new PwdDialog(this).setNumRand(true).show();
     }
 
     @Override

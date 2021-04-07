@@ -60,13 +60,16 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
         setBottom();
     }
 
-    /**设置键盘数字随机*/
+    /**
+     * 设置键盘数字随机
+     */
     private void randNum() {
         if (!isNumRand) {
             return;
         }
         for (int i = 0; i < pwdKeyNum.length; i++) {
             int rand = new Random().nextInt(11);
+            //确保空数据和back数据位置不变
             if (i == 9 || i == 11 || rand == 9 || rand == 11) {
                 continue;
             }
@@ -79,6 +82,7 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
 
     /**
      * 设置数字键盘是否随机
+     *
      * @param isNumRand true 随机生成 false 正常显示
      * @return
      */
@@ -87,7 +91,9 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
         return this;
     }
 
-    /**设置在底部打开*/
+    /**
+     * 设置在底部打开
+     */
     private void setBottom() {
         //1、使用Dialog、设置style
         //2、设置布局
@@ -102,7 +108,7 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
 
 
     /**
-     * 城市键盘绑定数据
+     * 数字键盘绑定数据
      */
     private void onBindKeyView(LinearLayout contentView, int num) {
         for (int index = 0; index < pwdKeyNum.length; index++) {
