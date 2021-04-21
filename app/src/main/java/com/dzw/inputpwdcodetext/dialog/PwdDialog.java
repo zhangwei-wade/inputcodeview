@@ -31,6 +31,7 @@ public class PwdDialog extends Dialog implements InputCodeView.OnCodeCompleteLis
      * 键盘是否随机
      */
     private boolean isNumRand = false;
+    private OnInputCodeListener onInputCodeListener;
 
     public PwdDialog(@NonNull Context context) {
         this(context, 0);
@@ -171,12 +172,24 @@ public class PwdDialog extends Dialog implements InputCodeView.OnCodeCompleteLis
         return (int) (dpValue * scale + 0.5f);
     }
 
+    public PwdDialog setInputComplete(OnInputCodeListener onInputCodeListener) {
+        this.onInputCodeListener = onInputCodeListener;
+        return this;
+    }
+
+
     @Override
     public void inputCodeComplete(String verificationCode) {
         dismiss();
+        if (onInputCodeListener != null) {
+            onInputCodeListener.inputCodeComplete(this, verificationCode);
+        }
     }
 
     @Override
     public void inputCodeInput(String verificationCode) {
+        if (onInputCodeListener != null) {
+            onInputCodeListener.inputCodeInput(this, verificationCode);
+        }
     }
 }

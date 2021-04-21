@@ -1,5 +1,6 @@
 package com.dzw.inputpwdcodetext;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -9,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.dzw.inputcode.InputCodeView;
 import com.dzw.inputpwdcodetext.databinding.MainActivityBinding;
+import com.dzw.inputpwdcodetext.dialog.OnInputCodeListener;
 import com.dzw.inputpwdcodetext.dialog.PwdDialog;
 
 /**
@@ -32,7 +34,17 @@ public class MainActivity extends AppCompatActivity implements InputCodeView.OnC
 
 
     public void onClickShowDialog(View view) {
-        new PwdDialog(this).setNumRand(true).show();
+        new PwdDialog(this).setInputComplete(new OnInputCodeListener() {
+            @Override
+            public void inputCodeComplete(Dialog dialog, String verificationCode) {
+                Toast.makeText(MainActivity.this, verificationCode, Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void inputCodeInput(Dialog dialog, String verificationCode) {
+
+            }
+        }).setNumRand(true).show();
     }
 
     @Override
