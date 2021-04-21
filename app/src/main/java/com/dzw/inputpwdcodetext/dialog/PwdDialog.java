@@ -12,7 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 
-import com.dzw.inputcode.InputCodeEditText;
+import com.dzw.inputcode.InputCodeView;
 import com.dzw.inputpwdcodetext.R;
 
 import java.util.Random;
@@ -24,7 +24,7 @@ import static android.view.Gravity.CENTER_HORIZONTAL;
 /**
  * @author zhangwei on 2021/4/6.
  */
-public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeCompleteListener {
+public class PwdDialog extends Dialog implements InputCodeView.OnCodeCompleteListener {
 
     private String[] pwdKeyNum = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "", "0", "back"};
     /**
@@ -42,7 +42,7 @@ public class PwdDialog extends Dialog implements InputCodeEditText.OnCodeComplet
     }
 
 
-    private InputCodeEditText mCodeText;
+    private InputCodeView mCodeText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

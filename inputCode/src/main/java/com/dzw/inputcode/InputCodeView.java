@@ -21,7 +21,7 @@ import android.widget.EditText;
 /**
  * 自定义文本输入框，增加清空按钮
  */
-public class InputCodeEditText extends EditText implements TextWatcher {
+public class InputCodeView extends EditText implements TextWatcher {
 
     private Paint paint;//绘制方框
     private Paint textPaint;//绘制字体
@@ -86,32 +86,32 @@ public class InputCodeEditText extends EditText implements TextWatcher {
     private int mStrokeWidth;
 
 
-    public InputCodeEditText(Context context, AttributeSet attrs) {
+    public InputCodeView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public InputCodeEditText(Context context, AttributeSet attrs, int defStyle) {
+    public InputCodeView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
 
 
     private void init(AttributeSet attrs) {
-        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.CodeEditText);
-        intervalSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvIntervalSize, intervalSize);
-        radius = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_radius, radius);
-        textSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvTextSize, textSize);
-        tvWidthSize = typedArray.getDimensionPixelSize(R.styleable.CodeEditText_tvWidth, tvWidthSize);
-        mTextLen = typedArray.getInt(R.styleable.CodeEditText_tvLen, mTextLen);
-        isPassWord = typedArray.getBoolean(R.styleable.CodeEditText_tvIsPwd, isPassWord);
-        mTextColor = typedArray.getColor(R.styleable.CodeEditText_tvTextColor, mTextColor);
-        mBorderColor = typedArray.getColor(R.styleable.CodeEditText_tvBorderColor, mBorderColor);
-        mFocusBorderColor = typedArray.getColor(R.styleable.CodeEditText_tvFocusBorderColor, mFocusBorderColor);
-        mStyle = typedArray.getInt(R.styleable.CodeEditText_tvStyle, mStyle);
-        mSelect = typedArray.getResourceId(R.styleable.CodeEditText_tvCustomSelectIcon, mSelect);
-        mUnSelect = typedArray.getResourceId(R.styleable.CodeEditText_tvUnCustomSelectIcon, mUnSelect);
-        mStrokeWidth = typedArray.getDimensionPixelOffset(R.styleable.CodeEditText_tvStrokeWidth, dip2px(1));
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.InputCodeView);
+        intervalSize = typedArray.getDimensionPixelSize(R.styleable.InputCodeView_tvMargin, intervalSize);
+        radius = typedArray.getDimensionPixelSize(R.styleable.InputCodeView_tvRadius, radius);
+        textSize = typedArray.getDimensionPixelSize(R.styleable.InputCodeView_tvTextSize, textSize);
+        tvWidthSize = typedArray.getDimensionPixelSize(R.styleable.InputCodeView_tvWidth, tvWidthSize);
+        mTextLen = typedArray.getInt(R.styleable.InputCodeView_tvLen, mTextLen);
+        isPassWord = typedArray.getBoolean(R.styleable.InputCodeView_tvIsPwd, isPassWord);
+        mTextColor = typedArray.getColor(R.styleable.InputCodeView_tvTextColor, mTextColor);
+        mBorderColor = typedArray.getColor(R.styleable.InputCodeView_tvBorderColor, mBorderColor);
+        mFocusBorderColor = typedArray.getColor(R.styleable.InputCodeView_tvFocusBorderColor, mFocusBorderColor);
+        mStyle = typedArray.getInt(R.styleable.InputCodeView_tvStyle, mStyle);
+        mSelect = typedArray.getResourceId(R.styleable.InputCodeView_tvCustomSelectIcon, mSelect);
+        mUnSelect = typedArray.getResourceId(R.styleable.InputCodeView_tvUnCustomSelectIcon, mUnSelect);
+        mStrokeWidth = typedArray.getDimensionPixelOffset(R.styleable.InputCodeView_tvStrokeWidth, dip2px(1));
         typedArray.recycle();
         setBackgroundColor(Color.WHITE);
         // 增加文本监听器.
@@ -178,10 +178,10 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         int left = (getWidth() - count * (tvWidthSize + intervalSize)) / 2;
         for (int i = 1; i < count - 1; i++) {
             RectF rectF = new RectF(left + (tvWidthSize + intervalSize) * i,
-                    bgCenterY - tvWidthSize / 2, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2);
+                    bgCenterY - tvWidthSize / 2f, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2f);
             canvas.drawRoundRect(rectF, 0, 0, paint);
         }
-        RectF rectF = new RectF(left, bgCenterY - tvWidthSize / 2, left + (tvWidthSize + intervalSize) * (count - 1) + tvWidthSize, bgCenterY + tvWidthSize / 2);
+        RectF rectF = new RectF(left, bgCenterY - tvWidthSize / 2f, left + (tvWidthSize + intervalSize) * (count - 1) + tvWidthSize, bgCenterY + tvWidthSize / 2f);
         canvas.drawRoundRect(rectF, radius, radius, paint);
     }
 
@@ -193,7 +193,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         for (int i = 0; i < count; i++) {
             setFocusColor(i);
             RectF rectF = new RectF(left + (tvWidthSize + intervalSize) * i,
-                    bgCenterY - tvWidthSize / 2, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2);
+                    bgCenterY - tvWidthSize / 2f, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2f);
             canvas.drawRoundRect(rectF, radius, radius, paint);
         }
     }
@@ -208,7 +208,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         for (int i = 0; i < count; i++) {
             setFocusColor(i);
             RectF rectF = new RectF(left + (tvWidthSize + intervalSize) * i,
-                    bgCenterY - tvWidthSize / 2, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2);
+                    bgCenterY - tvWidthSize / 2f, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2f);
             canvas.drawRoundRect(rectF, radius, radius, paint);
         }
     }
@@ -225,7 +225,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         int left = (getWidth() - count * (tvWidthSize + intervalSize)) / 2;
         for (int i = 0; i < count; i++) {
             setFocusColor(i);
-            canvas.drawLine(left + (tvWidthSize + intervalSize) * i, bgCenterY + tvWidthSize / 2, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2, paint);
+            canvas.drawLine(left + (tvWidthSize + intervalSize) * i, bgCenterY + tvWidthSize / 2f, left + (tvWidthSize + intervalSize) * i + tvWidthSize, bgCenterY + tvWidthSize / 2f, paint);
         }
     }
 
@@ -242,9 +242,9 @@ public class InputCodeEditText extends EditText implements TextWatcher {
         int left = (getWidth() - count * (tvWidthSize + intervalSize)) / 2;
         for (int i = 0; i < count; i++) {
             if (getText().length() > i) {
-                canvas.drawBitmap(focusBitmap, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - bitmap.getWidth() / 2, bgCenterY - bitmap.getHeight() / 2, new Paint(Paint.ANTI_ALIAS_FLAG));
+                canvas.drawBitmap(focusBitmap, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2f - bitmap.getWidth() / 2f, bgCenterY - bitmap.getHeight() / 2f, new Paint(Paint.ANTI_ALIAS_FLAG));
             } else {
-                canvas.drawBitmap(bitmap, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - bitmap.getWidth() / 2, bgCenterY - bitmap.getHeight() / 2, new Paint(Paint.ANTI_ALIAS_FLAG));
+                canvas.drawBitmap(bitmap, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2f - bitmap.getWidth() / 2f, bgCenterY - bitmap.getHeight() / 2f, new Paint(Paint.ANTI_ALIAS_FLAG));
             }
         }
         if (bitmap.isRecycled()) {
@@ -272,7 +272,7 @@ public class InputCodeEditText extends EditText implements TextWatcher {
             float textWidth = textPaint.measureText(text);
             Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
             float y = bgCenterY + (fontMetrics.bottom - fontMetrics.top) / 2 - fontMetrics.bottom;
-            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2 - textWidth / 2, y, textPaint);
+            canvas.drawText(text, left + (tvWidthSize + intervalSize) * i + tvWidthSize / 2f - textWidth / 2, y, textPaint);
         }
     }
 
@@ -294,7 +294,8 @@ public class InputCodeEditText extends EditText implements TextWatcher {
      */
     public void addText(String text) {
         if (getText().length() < mTextLen) {
-            setText(getText().toString() + text);
+            append(text);
+//            setText(getText().toString() + text);
         }
     }
 

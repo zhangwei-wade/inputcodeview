@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <declare-styleable name="CodeEditText">
+    <declare-styleable name="InputCodeView">
         <attr name="tvWidth" format="dimension" />
         <!--文字大小-->
         <attr name="tvTextSize" format="dimension" />
@@ -9,9 +9,9 @@
         <!--是否为密码输入框-->
         <attr name="tvIsPwd" format="boolean" />
         <!--间隔-->
-        <attr name="tvIntervalSize" format="dimension" />
+        <attr name="tvMargin" format="dimension" />
         <!--圆角-->
-        <attr name="radius" format="dimension" />
+        <attr name="tvRadius" format="dimension" />
         <!--文字颜色-->
         <attr name="tvTextColor" format="reference|color" />
         <!--边框颜色-->

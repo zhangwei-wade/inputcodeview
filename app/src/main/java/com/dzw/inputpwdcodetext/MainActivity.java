@@ -7,14 +7,14 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.dzw.inputcode.InputCodeEditText;
+import com.dzw.inputcode.InputCodeView;
 import com.dzw.inputpwdcodetext.databinding.MainActivityBinding;
 import com.dzw.inputpwdcodetext.dialog.PwdDialog;
 
 /**
  * @author zhangwei on 2020/12/19.
  */
-public class MainActivity extends AppCompatActivity implements InputCodeEditText.OnCodeCompleteListener {
+public class MainActivity extends AppCompatActivity implements InputCodeView.OnCodeCompleteListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_1"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -29,7 +29,7 @@
             app:tvTextSize="16dp"
             app:tvWidth="45dp" />
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_2"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -47,7 +47,7 @@
             app:tvTextSize="16dp"
             app:tvWidth="45dp" />
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             app:tvWidth="45dp" />
     
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_4"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -82,7 +82,7 @@
             app:tvTextSize="16dp"
             app:tvWidth="35dp" />
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             app:tvWidth="35dp" />
     
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_6"
             android:layout_width="match_parent"
             android:layout_height="80dp"
@@ -112,7 +112,7 @@
             app:tvStyle="customStyle"
             app:tvWidth="35dp" />
     
-        <com.dzw.inputcode.InputCodeEditText
+        <com.dzw.inputcode.InputCodeView
             android:id="@+id/input_code_7"
             android:layout_width="match_parent"
             android:layout_height="60dp"

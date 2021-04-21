@@ -6,77 +6,77 @@
     android:orientation="vertical">
 
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_1"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/white"
         android:inputType="number"
+        android:text="12342"
         app:tvBorderColor="#151515"
         app:tvFocusBorderColor="#BCBBBA"
-        app:tvStrokeWidth="2dp"
-        app:tvIntervalSize="5dp"
+        app:tvMargin="5dp"
         app:tvIsPwd="true"
-        android:text="12342"
         app:tvLen="6"
+        app:tvStrokeWidth="2dp"
         app:tvTextColor="#000000"
         app:tvTextSize="16sp"
         app:tvWidth="45dp" />
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_2"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/white"
         android:inputType="number"
         android:text="123"
-        app:tvFocusBorderColor="#FFC107"
-        app:radius="10dp"
         app:tvBorderColor="#D6DAD6"
-        app:tvIntervalSize="6dp"
+        app:tvFocusBorderColor="#FFC107"
+        app:tvMargin="6dp"
         app:tvIsPwd="false"
         app:tvLen="5"
+        app:tvRadius="10dp"
         app:tvStyle="defaultStyle"
         app:tvTextColor="#7E0808"
         app:tvTextSize="16sp"
         app:tvWidth="45dp" />
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:inputType="number"
         android:text="123"
-        app:radius="10dp"
         app:tvBorderColor="#D6DAD6"
-        app:tvIntervalSize="0dp"
+        app:tvMargin="0dp"
         app:tvIsPwd="true"
         app:tvLen="5"
+        app:tvRadius="10dp"
         app:tvStyle="startEndRadiusStyle"
         app:tvTextColor="#000000"
         app:tvTextSize="20sp"
         app:tvWidth="45dp" />
 
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_4"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/white"
         android:inputType="number"
         android:text="133"
-        app:radius="10dp"
         app:tvBorderColor="#D6DAD6"
-        app:tvIntervalSize="6dp"
+        app:tvMargin="6dp"
         app:tvIsPwd="false"
         app:tvLen="5"
+        app:tvRadius="10dp"
         app:tvStyle="weChatPayStyle"
         app:tvTextColor="#000000"
         app:tvTextSize="32sp"
         app:tvWidth="35dp" />
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
         android:text="13"
         app:tvBorderColor="#D6DAD6"
         app:tvFocusBorderColor="#FFC107"
-        app:tvIntervalSize="6dp"
+        app:tvMargin="6dp"
         app:tvIsPwd="false"
         app:tvLen="5"
         app:tvStyle="lineStyle"
@@ -94,19 +94,19 @@
         app:tvWidth="35dp" />
 
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_6"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:background="@color/white"
         android:inputType="number"
         android:text="13"
-        app:tvIntervalSize="10dp"
+        app:tvMargin="10dp"
         app:tvLen="5"
         app:tvStyle="customStyle"
         app:tvWidth="35dp" />
 
-    <com.dzw.inputcode.InputCodeEditText
+    <com.dzw.inputcode.InputCodeView
         android:id="@+id/input_code_7"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -114,7 +114,7 @@
         android:inputType="number"
         android:text="13"
         app:tvCustomSelectIcon="@mipmap/adopt_icon_success"
-        app:tvIntervalSize="10dp"
+        app:tvMargin="10dp"
         app:tvLen="5"
         app:tvStyle="customStyle"
         app:tvUnCustomSelectIcon="@mipmap/adopt_icon_default"
@@ -123,8 +123,8 @@
     <Button
         android:id="@+id/click"
         android:layout_width="wrap_content"
-        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
         android:onClick="onClickShowDialog"
         android:text="密码输入" />
 </LinearLayout>
