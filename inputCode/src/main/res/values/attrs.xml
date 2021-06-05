@@ -8,6 +8,8 @@
         <attr name="tvLen" format="integer" />
         <!--是否为密码输入框-->
         <attr name="tvIsPwd" format="boolean" />
+        <!--是否显示光标-->
+        <attr name="tvIsCursor" format="boolean" />
         <!--间隔-->
         <attr name="tvMargin" format="dimension" />
         <!--圆角-->

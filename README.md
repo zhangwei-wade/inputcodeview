@@ -20,6 +20,7 @@
             android:background="@color/white"
             android:inputType="number"
             app:tvBorderColor="#151515"
+            app:tvIsCursor="true"
             app:tvFocusBorderColor="#BCBBBA"
             app:tvStrokeWidth="2dp"
             app:tvIntervalSize="5dp"
@@ -146,6 +147,8 @@
         <attr name="tvLen" format="integer" />
         <!--是否为密码输入框-->
         <attr name="tvIsPwd" format="boolean" />
+        <!--是否显示光标-->
+        <attr name="tvIsCursor" format="boolean" />
         <!--间隔-->
         <attr name="tvIntervalSize" format="dimension" />
         <!--圆角-->

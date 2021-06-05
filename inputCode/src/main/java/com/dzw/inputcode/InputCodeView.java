@@ -7,16 +7,19 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.graphics.RectF;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.ActionMode;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+
 
 /**
  * 自定义文本输入框，增加清空按钮
@@ -24,6 +27,7 @@ import android.widget.EditText;
 public class InputCodeView extends EditText implements TextWatcher {
 
     private Paint paint;//绘制方框
+    private Paint cursorPaint;//游标画笔
     private Paint textPaint;//绘制字体
     private float bgCenterY;
     private OnCodeCompleteListener onCodeCompleteListener;
@@ -39,6 +43,10 @@ public class InputCodeView extends EditText implements TextWatcher {
      * 是否为密码输入框
      */
     private boolean isPassWord = true;//是否为密码输入框
+    /**
+     * 是否显示光标
+     */
+    private boolean isCursor = false;//默认不显示
     /**
      * 验证码间隔
      */
@@ -105,6 +113,7 @@ public class InputCodeView extends EditText implements TextWatcher {
         tvWidthSize = typedArray.getDimensionPixelSize(R.styleable.InputCodeView_tvWidth, tvWidthSize);
         mTextLen = typedArray.getInt(R.styleable.InputCodeView_tvLen, mTextLen);
         isPassWord = typedArray.getBoolean(R.styleable.InputCodeView_tvIsPwd, isPassWord);
+        isCursor = typedArray.getBoolean(R.styleable.InputCodeView_tvIsCursor, isCursor);
         mTextColor = typedArray.getColor(R.styleable.InputCodeView_tvTextColor, mTextColor);
         mBorderColor = typedArray.getColor(R.styleable.InputCodeView_tvBorderColor, mBorderColor);
         mFocusBorderColor = typedArray.getColor(R.styleable.InputCodeView_tvFocusBorderColor, mFocusBorderColor);
@@ -119,6 +128,15 @@ public class InputCodeView extends EditText implements TextWatcher {
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(mStrokeWidth);
         paint.setColor(mBorderColor);
+
+        cursorPaint = new Paint();
+        cursorPaint.setStyle(Paint.Style.STROKE);
+        cursorPaint.setStrokeWidth(dip2px(2));
+        if (mFocusBorderColor == -1) {
+            cursorPaint.setColor(Color.GRAY);
+        } else {
+            cursorPaint.setColor(mFocusBorderColor);
+        }
 
         // 增加文本监听器.
         textPaint = new Paint();
@@ -161,9 +179,14 @@ public class InputCodeView extends EditText implements TextWatcher {
         } else if (mStyle == 3) {
             drawLineRect(mTextLen, canvas);
         } else if (mStyle == -1) {
-            drawBitmap(mTextLen, canvas);
+            drawCanvasBitmap(mTextLen, canvas);
         }
         drawText(mTextLen, canvas);
+        if (isCursor) {
+            canvas.save();
+            drawCursor(mTextLen, canvas);
+            canvas.restore();
+        }
     }
 
 
@@ -232,7 +255,7 @@ public class InputCodeView extends EditText implements TextWatcher {
     /**
      * 绘制图片
      */
-    private void drawBitmap(int count, Canvas canvas) {
+    private void drawCanvasBitmap(int count, Canvas canvas) {
         if (intervalSize == 0) {
             intervalSize = dip2px(5);
         }
@@ -276,6 +299,18 @@ public class InputCodeView extends EditText implements TextWatcher {
         }
     }
 
+
+    /**
+     * 绘制游标
+     */
+    private void drawCursor(int count, Canvas canvas) {
+        if (!isFocused() || getText().length() >= mTextLen || mStyle == -1 || drawLineStatus) {
+            return;
+        }
+        float y = bgCenterY - tvWidthSize / 2f;
+        int left = (getWidth() - count * (tvWidthSize + intervalSize)) / 2 + getText().length() * (tvWidthSize + intervalSize) + tvWidthSize / 2;
+        canvas.drawLine(left, y + dip2px(5f), left, y - dip2px(5f) + tvWidthSize, cursorPaint);
+    }
 
     /**
      * 设置焦点颜色
@@ -370,11 +405,16 @@ public class InputCodeView extends EditText implements TextWatcher {
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-        invalidate();
+        if (getText().length() >= mTextLen) {
+            removeCallbacks(runnable);
+        } else {
+            startCursor();
+        }
     }
 
     @Override
     public void afterTextChanged(Editable s) {
+        invalidate();
         if (onCodeCompleteListener != null) {
             if (getText().length() == mTextLen) {
                 onCodeCompleteListener.inputCodeComplete(getText().toString());
@@ -384,6 +424,36 @@ public class InputCodeView extends EditText implements TextWatcher {
         }
     }
 
+    @Override
+    protected void onFocusChanged(boolean focused, int direction, Rect previouslyFocusedRect) {
+        super.onFocusChanged(focused, direction, previouslyFocusedRect);
+        if (focused) {
+            if (mTextLen != getText().length()) {
+                startCursor();
+            }
+        } else {
+            removeCallbacks(runnable);
+        }
+    }
+
+    private void startCursor() {
+        if (isCursor && mStyle != -1) {
+            removeCallbacks(runnable);
+            post(runnable);
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasWindowFocus) {
+        super.onWindowFocusChanged(hasWindowFocus);
+        if (hasWindowFocus) {
+            if (mTextLen != getText().length()) {
+                startCursor();
+            }
+        } else {
+            removeCallbacks(runnable);
+        }
+    }
 
     /**
      * 输入完成回调接口
@@ -400,4 +470,22 @@ public class InputCodeView extends EditText implements TextWatcher {
     public void setOnCodeCompleteListener(OnCodeCompleteListener onCodeCompleteListener) {
         this.onCodeCompleteListener = onCodeCompleteListener;
     }
+
+    /**
+     * 用来判断当前光标状态
+     */
+    private boolean drawLineStatus = false;
+
+    private Runnable runnable = new Runnable() {
+        @Override
+        public void run() {
+            Log.d(getClass().getSimpleName(), getId() + "");
+            float y = bgCenterY - tvWidthSize / 2f;
+            int left = (getWidth() - mTextLen * (tvWidthSize + intervalSize)) / 2 + getText().length() * (tvWidthSize + intervalSize) + tvWidthSize / 2;
+            invalidate(left - 1, (int) y + dip2px(5f), left + 1, (int) y - dip2px(5f) + tvWidthSize);
+            drawLineStatus = !drawLineStatus;
+            postDelayed(runnable, 500);
+        }
+    };
+
 }

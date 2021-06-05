@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity implements InputCodeView.OnC
         mainActivityBinding.inputCode3.setOnCodeCompleteListener(this);
         mainActivityBinding.inputCode4.setOnCodeCompleteListener(this);
         mainActivityBinding.inputCode5.setOnCodeCompleteListener(this);
-        mainActivityBinding.inputCode6.setOnCodeCompleteListener(this);
-        mainActivityBinding.inputCode7.setOnCodeCompleteListener(this);
+//        mainActivityBinding.inputCode6.setOnCodeCompleteListener(this);
+//        mainActivityBinding.inputCode7.setOnCodeCompleteListener(this);
     }
 
 
